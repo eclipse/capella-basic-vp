@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  Copyright (c) 2017, 2019 THALES GLOBAL SERVICES.
+  Copyright (c) 2017, 20120 THALES GLOBAL SERVICES.
   All rights reserved. This program and the accompanying materials
   are made available under the terms of the Eclipse Public License v1.0
   which accompanies this distribution, and is available at
@@ -8,6 +8,7 @@
 
   Contributors:
        Thales - initial API and implementation
+       Obeo - add mass test profile
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
@@ -24,8 +25,8 @@
 	<packaging>pom</packaging>
 
 	<properties>
-		<tycho-version>1.1.0</tycho-version>
-		<tycho-extras-version>1.1.0</tycho-extras-version>
+		<tycho-version>1.6.0</tycho-version>
+		<tycho-extras-version>1.6.0</tycho-extras-version>
 		<tycho.scmUrl>scm:git:http://git.polarsys.org/c/capella/capella-basic-vp.git</tycho.scmUrl>
 		<antrun-version>1.7</antrun-version>
 		<sonar-version>3.0.2</sonar-version>
@@ -36,6 +37,8 @@
 		
 		<!-- for junit -->
 		<capella-product-id>org.polarsys.capella.core.platform.sirius.ui.perspective.product</capella-product-id>
+		<capella-rcp-product-id>org.polarsys.capella.rcp.product</capella-rcp-product-id>
+		<capella-application-id>org.polarsys.capella.core.platform.sirius.ui.perspective.id</capella-application-id>
 		<tycho.testArgLine>-Xms256m -Xmx1024m</tycho.testArgLine>
 
 		<!-- for packaging -->
@@ -80,6 +83,18 @@
 				<module>priceviewpoint/features</module>
 				<module>priceviewpoint/plugins</module>
 				<module>releng/org.polarsys.capella.basic.price.viewpoint.site</module>
+			</modules>
+		</profile>
+		<profile>
+			<id>massTests</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<modules>
+				<module>massviewpoint/tests</module>
+				<module>massviewpoint/features</module>
+				<module>massviewpoint/plugins</module>
+				<module>releng/org.polarsys.capella.basic.mass.viewpoint.site</module>
 			</modules>
 		</profile>
 	</profiles>

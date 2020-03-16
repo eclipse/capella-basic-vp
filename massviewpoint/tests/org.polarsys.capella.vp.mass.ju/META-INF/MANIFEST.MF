@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Ju
+Bundle-SymbolicName: org.polarsys.capella.vp.mass.ju
+Bundle-Version: 1.4.0.qualifier
+Bundle-ClassPath: ju.jar,
+ capella-studio-1.4/plugins/org.eclipse.sirius_6.3.0.201910180815.jar
+Export-Package: org.polarsys.capella.vp.mass.ju
+Require-Bundle: org.polarsys.capella.core.libraries;bundle-version="1.4.0",
+ org.polarsys.capella.test.framework,
+ org.polarsys.capella.core.data.gen,
+ org.polarsys.capella.vp.mass
+Import-Package: org.polarsys.capella.vp.mass.mass.impl,
+ org.polarsys.capella.vp.mass.services

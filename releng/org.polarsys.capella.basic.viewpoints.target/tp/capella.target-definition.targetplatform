@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c)  2017, 2018 THALES GLOBAL SERVICES.
+ * Copyright (c)  2017, 2020 THALES GLOBAL SERVICES.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,13 +7,26 @@
  *
  * Contributors:
  *    Thales - initial API and implementation
+ * 	  Obeo - add tests location
  *******************************************************************************/
 target "CapellaBasicViewpoints"
 
 include "https://github.com/eclipse/capella/raw/master/releng/plugins/org.polarsys.capella.targets/full/capella.target-definition.targetplatform"
 
 with source, requirements
-
-location capella-master "https://download.eclipse.org/capella/core/updates/nightly/master/org.polarsys.capella.rcp.site/" {
+location capella-master "https://download.eclipse.org/capella/core/updates/releases/1.4.0-R20191121-173601/org.polarsys.capella.rcp.site/" {
 	org.polarsys.capella.rcp.feature.feature.group lazy
+}
+
+//following locations are used for tests
+location capella-test "https://download.eclipse.org/capella/core/updates/releases/1.4.0-R20191121-173601/org.polarsys.capella.test.site/" {
+	org.polarsys.capella.test.framework lazy
+}
+
+location diffmerge-pattern "https://download.eclipse.org/diffmerge/releases/0.12.0/edm-patterns-site/" {
+	org.eclipse.emf.diffmerge.patterns.templates.gen lazy
+}
+
+location sirius-query-legacy "https://download.eclipse.org/sirius/updates/legacy/" {
+	org.eclipse.sirius.query.legacy lazy
 }
