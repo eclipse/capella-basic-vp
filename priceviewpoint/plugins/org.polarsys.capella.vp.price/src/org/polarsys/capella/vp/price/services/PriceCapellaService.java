@@ -8,6 +8,7 @@
  * 
  *   Contributors:
  *      Thales - initial API and implementation
+ *      Obeo - Code improvement
  ******************************************************************************/
 package org.polarsys.capella.vp.price.services;
 
@@ -71,7 +72,7 @@ public class PriceCapellaService extends PriceGenericRootService {
 	
 	public int computePrice(EObject eObject) {
 		int m = super.compute(eObject, getVisitor(), PartPrice.class);
-		if (eObject instanceof PartPrice){
+		if (m!=-1){
 			((PartPrice)getPriceObject(eObject)).setCurrentPrice(m);
 		}
 		return m;

@@ -8,6 +8,7 @@
  * 
  *   Contributors:
  *      Thales - initial API and implementation
+ *      Obeo - Code improvement
  ******************************************************************************/
 package org.polarsys.capella.vp.price.design.service.nodes;
 
@@ -16,8 +17,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.polarsys.capella.core.data.cs.Part;
 import org.polarsys.capella.vp.price.price.PartPrice;
 import org.polarsys.capella.vp.price.price.Price;
-import org.polarsys.kitalpha.emde.model.ElementExtension;
 import org.polarsys.capella.vp.price.services.PriceCapellaService;
+import org.polarsys.kitalpha.emde.model.ElementExtension;
 
 public class PriceLevelHelper {
 	
@@ -82,29 +83,26 @@ public class PriceLevelHelper {
 	
 	
 	private boolean evaluatePriceStatus(EObject eObject, PriceStatus flag){
-		final int current = maPriceService.computePrice(eObject);
-		final int maxValue = ((Price) eObject).getMaxValue();
 		
-		if (maxValue<= 0)
-		{
-			return false;
-		}
-		else
-		{
-			switch (flag) {
-			case OVERHEAD:
-				return current > maxValue;
+		if (eObject instanceof Price) {
+			final int current = ((PartPrice) eObject).getCurrentPrice();
+			final int maxValue = ((Price) eObject).getMaxValue();
+			
+			if (maxValue<= 0)
+			{
+				return false;
+			}
+			else
+			{
+				switch (flag) {
+				case OVERHEAD:
+					return current > maxValue;
 
-			case SATURATED:
-				return current != 0 && current == maxValue;
+				case SATURATED:
+					return current != 0 && current == maxValue;
+				}
 			}
 		}
-		
-//		if (flag.equals(PriceStatus.OVERHEAD))
-//			return current > maxValue;
-//		
-//		if (flag.equals(PriceStatus.SATURATED))
-//			return current != 0 && current == maxValue;
 		
 		//May be a runtimeException
 		return false;

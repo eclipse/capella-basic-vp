@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Obeo
+Bundle-SymbolicName: org.polarsys.capella.vp.price.ju
+Bundle-Version: 5.0.0.qualifier
+Automatic-Module-Name: org.polarsys.capella.vp.price.ju
+Bundle-RequiredExecutionEnvironment: JavaSE-14
+Require-Bundle: org.polarsys.capella.core.libraries,
+ org.polarsys.capella.core.data.gen,
+ org.polarsys.capella.test.framework,
+ org.polarsys.capella.vp.price;bundle-version="5.0.0"
+Import-Package: junit.framework;version="4.13.0",
+ org.polarsys.capella.vp.price.price.impl

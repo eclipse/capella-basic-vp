@@ -15,14 +15,19 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.sirius.business.api.componentization.ViewpointRegistry;
+import org.eclipse.sirius.business.api.session.SessionManager;
 import org.eclipse.sirius.viewpoint.description.Viewpoint;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
+import org.polarsys.capella.vp.perfo.design.service.perfoListener.PerfoSessionListener;
 
 /**
  * The activator class controls the plug-in life cycle
  */
 public class Activator extends AbstractUIPlugin {
+	
+	PerfoSessionListener sessionListener;
+	
     // The plug-in ID
     public static final String PLUGIN_ID = "org.polarsys.capella.vp.perfo.design";
 
@@ -47,6 +52,11 @@ public class Activator extends AbstractUIPlugin {
 	  plugin = this;
 	  viewpoints = new HashSet<Viewpoint>();
 	  viewpoints.addAll(ViewpointRegistry.getInstance().registerFromPlugin(PLUGIN_ID + "/description/perfo.odesign")); 
+	  
+		// add a listener to the session manager so that the performance of the elements of the
+		// model can be calculated when a new session is opened
+		sessionListener = new PerfoSessionListener();
+		SessionManager.INSTANCE.addSessionsListener(sessionListener);
     }
 
     /*

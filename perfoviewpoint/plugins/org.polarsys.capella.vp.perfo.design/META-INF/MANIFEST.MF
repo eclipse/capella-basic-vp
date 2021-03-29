@@ -17,3 +17,4 @@ Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-Localization: plugin
 Bundle-Vendor: %providerName
+Import-Package: org.polarsys.capella.core.model.helpers

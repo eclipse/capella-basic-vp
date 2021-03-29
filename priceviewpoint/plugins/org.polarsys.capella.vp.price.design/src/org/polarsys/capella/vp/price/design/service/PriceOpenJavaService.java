@@ -8,18 +8,15 @@
  * 
  * Contributors: 
  *    Thales - initial API and implementation
+ *    Obeo - Code improvement
 *****************************************************************************/
 // Generated on 20.08.2015 at 04:49:15 CEST by Viewpoint DSL Generator V 0.1
 
 package org.polarsys.capella.vp.price.design.service;
 
-import java.util.ArrayList;
-import java.util.List;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.sirius.diagram.DDiagram;
-import org.eclipse.sirius.diagram.DDiagramElement;
 import org.eclipse.sirius.diagram.DSemanticDiagram;
 import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 import org.polarsys.capella.core.data.cs.Part;

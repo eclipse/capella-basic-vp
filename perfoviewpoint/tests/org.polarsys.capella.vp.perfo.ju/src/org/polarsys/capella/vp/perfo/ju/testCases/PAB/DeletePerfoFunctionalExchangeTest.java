@@ -1,0 +1,48 @@
+/*******************************************************************************
+ * Copyright (c) 2021 Obeo
+ *   All rights reserved. This program and the accompanying materials
+ *   are made available under the terms of the Eclipse Public License v1.0
+ *   which accompanies this distribution, and is available at
+ *   http://www.eclipse.org/legal/epl-v10.html
+ * 
+ *   Contributors:
+ *      Obeo - initial API and implementation
+ ******************************************************************************/
+package org.polarsys.capella.vp.perfo.ju.testCases.PAB;
+
+import org.eclipse.emf.ecore.EObject;
+import org.polarsys.capella.common.ef.ExecutionManager;
+import org.polarsys.capella.common.ef.command.AbstractReadWriteCommand;
+import org.polarsys.capella.common.helpers.TransactionHelper;
+import org.polarsys.capella.core.data.fa.FunctionalChain;
+import org.polarsys.capella.core.data.fa.FunctionalExchange;
+import org.polarsys.capella.test.framework.helpers.EObjectHelper;
+import org.polarsys.capella.vp.perfo.perfo.impl.TimeCapacityImpl;
+
+/**
+ * This test case checks if when deleting a perfo from a FunctionalExchange
+ * the perfo of the FunctionalChains it is a part of are re-calculated.
+ * Used to check if the listener responds to the notification REMOVE
+ */
+public class DeletePerfoFunctionalExchangeTest extends PABPerfoTest {
+
+	@Override
+	public void test() throws Exception {
+		FunctionalExchange functionalExchange2 = rootAbstractFunction.getOwnedFunctionalExchanges().get(1);
+		FunctionalChain functionalChain = functionalExchange2.getInvolvingFunctionalChains().get(0);
+		EObject perfoObject = functionalExchange2.getOwnedExtensions().get(0);
+		
+		ExecutionManager manager = TransactionHelper.getExecutionManager(perfoObject);
+		manager.execute(new AbstractReadWriteCommand() {
+
+			@Override
+			public void run() {
+				EObjectHelper.removeElement(perfoObject);
+			}
+		});
+		
+		assertEquals("The performance of FC1 was not changed after the deletion of the performance of FE2",
+				((TimeCapacityImpl) functionalChain.getOwnedExtensions().get(0)).getCurrentExecutionTime(), 80);
+	}
+
+}

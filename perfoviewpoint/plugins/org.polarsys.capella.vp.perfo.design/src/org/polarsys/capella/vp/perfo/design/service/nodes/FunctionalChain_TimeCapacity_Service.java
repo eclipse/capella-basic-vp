@@ -11,13 +11,8 @@
 *****************************************************************************/
 package org.polarsys.capella.vp.perfo.design.service.nodes;
 
-import java.util.ArrayList;
-import java.util.List;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.sirius.diagram.DDiagram;
-import org.eclipse.sirius.diagram.DDiagramElement;
 import org.polarsys.capella.vp.perfo.perfo.TimeCapacity;
-import org.polarsys.capella.vp.perfo.services.PerformanceServices;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,22 +29,15 @@ public class FunctionalChain_TimeCapacity_Service {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 **/
-	private static PerformanceServices performanceService = new PerformanceServices();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @param eObject : the current semantic object
 	 * @param view : the current view
 	 * @param container : the semantic container of the current object
 	 * @generated NOT
 	 */
 	public boolean performanceSaturated(EObject eObject, EObject view, EObject container) {
-		int checkPerformance = performanceService.checkPerformance(eObject, container);
 		int value = ((TimeCapacity) eObject).getValue();
-		return value != 0 && value == checkPerformance;
+		int executionTime = ((TimeCapacity) eObject).getCurrentExecutionTime();
+		return value != 0 && value == executionTime;
 	}
 
 	/**
@@ -62,8 +50,8 @@ public class FunctionalChain_TimeCapacity_Service {
 	 */
 	public boolean performanceOverhead(EObject eObject, EObject view, EObject container) {
 		int value = ((TimeCapacity) eObject).getValue();
-		int checkPerformance = performanceService.checkPerformance(eObject, container);
-		return value != 0 && value < checkPerformance;
+		int executionTime = ((TimeCapacity) eObject).getCurrentExecutionTime();
+		return value != 0 && value < executionTime;
 	}
 
 }
